@@ -17,15 +17,17 @@ var popup=[];
 
 
 d3.json(earthquake).then(function(data){
-    console.log(data);
-
+   console.log(data.features);
+   var features = data.features;
    
-
-    for (var i = 0; i < data.length; i++) {
-        //geometry= data[i].geometry;
-        L.marker(geometry.coordinates[1], geometry.coordinates[0]).bindPopup(geometry.coordinates[2]).addTo(myMap);
+  
+    for (var i = 0; i < features.length; i++) {
+        
+        var geometry=features[i].geometry;
+               
+        L.marker([geometry.coordinates[1], geometry.coordinates[0]]).bindPopup(geometry.coordinates[2]).addTo(myMap);
         
         
       }
       
-});
+ });
